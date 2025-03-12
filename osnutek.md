@@ -1,4 +1,4 @@
-# <NASLOV> 
+# NASLOV
 
 ## 📖 Tema seminarske naloge  
 *(Tema še ni izbrana)*  
