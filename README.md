@@ -6,7 +6,7 @@
 ## 🎯 Cilji naloge  
 - Razviti model, ki bo pred začetkom vožnje ocenil verjetnost za prometno nesrečo na podlagi zgodovinskih podatkov
 
-## 📊 Podatki
+## 📊 [Podatki](https://podatki.gov.si/dataset/mnzpprometne-nesrece-od-leta-2009-dalje)
 ### Podatki o nesrečah:
 - Identifikacijska številka nesreče
 - Klasifikacija nesreče glede na posledice
@@ -31,3 +31,6 @@
 - Uporaba varnostnega pasu ali čelade
 - Vozniški staž osebe (leta, meseci)
 - Rezultati alkotesta in strokovnega pregleda, če so bili opravljeni (mg/l izdihanega zraka, g/kg krvi)
+
+### Vir
+- https://podatki.gov.si/dataset/mnzpprometne-nesrece-od-leta-2009-dalje
