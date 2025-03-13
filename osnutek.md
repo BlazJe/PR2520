@@ -34,3 +34,9 @@
 
 ### Vir
 - https://podatki.gov.si/dataset/mnzpprometne-nesrece-od-leta-2009-dalje
+
+## Skupina
+- [Blaž Jelen](https://github.com/BlazJe)
+- [Tilen Krže](https://github.com/Tjulni)
+- [Žan Hribar](https://github.com/zanoixo)
+- [Benjamin Škiljan](https://github.com/benjamin102014)
