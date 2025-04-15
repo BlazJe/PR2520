@@ -5,3 +5,6 @@ contextily
 folium
 pandas
 ipykernel 
+scipy
+pickle
+scikit-learn
