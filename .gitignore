@@ -1,0 +1,13 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtual Environment
+PR2520/
+.PR2520/
+
+# Dependencies
+.Python
+
+# IDE
+.vscode/

@@ -1,0 +1,7 @@
+matplotlib
+pyproj
+geopandas
+contextily
+folium
+pandas
+ipykernel
