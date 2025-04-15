@@ -3,10 +3,12 @@
 __pycache__/
 
 # Virtual Environment
+venv/
+.venv/
 PR2520/
 .PR2520/
 
-# Dependencies
+# Dependency files
 .Python
 
 # IDE
