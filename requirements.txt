@@ -4,6 +4,10 @@ geopandas
 contextily
 folium
 pandas
+<<<<<<< HEAD
 ipykernel 
 scipy
 scikit-learn
+=======
+ipykernel
+>>>>>>> af1213517affd653343e1f4145eedf5c91102e52
