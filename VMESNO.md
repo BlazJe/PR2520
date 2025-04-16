@@ -19,7 +19,7 @@ Ker podatki vključujejo tudi geografske koordinate krajev, kjer so se nesreče 
 
 ## Modeli za napovedovanje vrednosti generirani z naivnim bayesom.
 
-### kratka predstavitev podatkov v modelu
+### Kratka predstavitev podatkov v modelu
 
 Od vseh originalnih podatkov so izbrisani stolpci (zaradi nepomemnosti pri napovedovanju):
 - datum prometne nesreče (se skoraj vsakič spreminja)
@@ -39,13 +39,13 @@ Večina vrstic je že prisotnih v diskretni obliki. Zvezne spremenljivke pa so b
 - vozniški staz v letih na intervale velike 10 (25 -> 2 pomen: vozniški staz od 20-29 let)
 - vrednost alkotesta in vrednost strokovnega pregleda na intervale velike 0.1 in pretvorba v cela števila(1.12 - 11 pomen vrednost 1.1 - 1.19)
 
-### ideja ustvarjanja modelov
+### Ideja ustvarjanja modelov
 
 Modele za napovedovanje katerih koli stolpcev želimo realizirati, ker bi lahko bili uporabni pri svetovalnih sistemih
 za klice v sili. Ob klicu pridobijo določene podatke po navadi pa ne vseh. Modele bi lakho uporabili za napovedovanje 
 teh manjkajočih podatkov. Glede na napovedi bi se lahko v naprej pripravili za najbolj verjetno stanje, ki jih čaka.
 
-### uspešnost modelov
+### Uspešnost modelov
 
 Modeli zo bili generirani z modelom naivni bayes.
 Med generiranimi modeli se vredu odnesejo tisti, ki imajo na izbiro samo 2 ali 3 možne napovedi.
@@ -55,3 +55,9 @@ pa je lahko problem izbire modela ali pa pomeni, da podatki za tisti stolpec nim
 Stolpični diagram prikaza natančnosti modelov.
 
 ![Graf](slike/accuracy_graph.png "Slika grafa natančnosti")
+
+## Časovna analiza
+
+Cilj je poiskati vzorce in trende povezane s časom nesreče. To se doseže na primer z analizo frekvence nesreč skozi leto, dneva v tednu, časa v dnevu, raziskovanjem vpliva praznikov in podobno. S pomočjo te analize lažje predvidimo, kdaj se nesreče najpogosteje zgodijo, kar lahko uporabimo v preventivne namene, pametno dodeljevanje virov (policija, intervencijska vozila) in javno ozaveščanje med dobami visoke verjetnosti nesreč.
+
+![Dnevno](slike/nesrece_dnevno.png "Slika grafa nesreč")
