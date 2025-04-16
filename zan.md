@@ -35,5 +35,5 @@ pa je lahko problem izbire modela ali pa pomeni, da podatki za tisti stolpec nim
 
 Stolpični diagram prikaza natančnosti modelov.
 
-![slika grafa natančnosti](https://github.com/BlazJe/PR2520/blob/main/accuracy_graph.png)
+![Graf](slike/accuracy_graph.png "Slika grafa natančnosti")
 
