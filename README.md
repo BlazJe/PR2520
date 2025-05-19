@@ -26,3 +26,6 @@ nbstripout --install
 pip install --upgrade nbdime
 nbdime config-git --enable
 ```
+```
+nbdime mergetool
+```
