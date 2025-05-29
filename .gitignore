@@ -1,0 +1,4 @@
+*.pkl
+
+!models_Random_Forest/
+!models_naiveBayas/

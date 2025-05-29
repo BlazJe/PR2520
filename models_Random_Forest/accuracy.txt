@@ -1,0 +1,7 @@
+predicting: KlasifikacijaNesrece 0.8639219141559199
+predicting: UpravnaEnotaStoritve 0.9797004268174069
+predicting: UraPN 0.24076850018880663
+predicting: VNaselju 0.9682919293748784
+predicting: Lokacija 1.0
+predicting: VrstaCesteNaselja 0.9998855717407971
+predicting: KlasifikacijaNesrece 0.8631552448192605
