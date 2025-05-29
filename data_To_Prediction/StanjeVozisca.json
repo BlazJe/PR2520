@@ -1,0 +1,16 @@
+{
+    "SUHO": 0,
+    "MOKRO": 1,
+    "OSTALO": 2,
+    "POLEDENELO - NEPOSIPANO": 3,
+    "SNE\u017dENO - NEPLU\u017dENO": 4,
+    "BLATNO": 5,
+    "POLEDENELO - POSIPANO": 6,
+    "SNE\u017dENO - PLU\u017dENO": 7,
+    "KOLESNICE": 8,
+    "PO\u0160KODOVANO": 9,
+    "UDARNE JAME": 10,
+    "SPOLZKO": 11,
+    "STOJE\u010cA VODA": 12,
+    "VLA\u017dNO": 13
+}
