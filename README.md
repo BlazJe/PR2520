@@ -1,6 +1,8 @@
 # Modeli
 
-Modeli niso objavleni v repozitoriju zaradi njihove velikosti.
-Če Želite generirati modele poženite model.ipynb datoteko in se bojo zgenerirai v vnaprej definirane direktorije:  
--models_NaiveBayas
--models_Random_Forest
+Modeli niso objavljeni v repozitoriju zaradi njihove velikosti.  
+Če želite generirati modele, poženite datoteko `model.ipynb`.  
+Modeli se bodo shranili v vnaprej določene direktorije:
+
+- `models_NaiveBayas`
+- `models_Random_Forest`
