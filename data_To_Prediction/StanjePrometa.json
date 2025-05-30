@@ -1,9 +1,9 @@
 {
     "TEKO\u010c (NORMALEN)": 0,
     "REDEK": 1,
-    "NEZNANO": 2,
-    "KOLONA VOZIL": 3,
+    "NORMALEN": 2,
+    "NEZNANO": 3,
     "GOST": 4,
     "ZASTOJI": 5,
-    "NORMALEN": 6
+    "KOLONA VOZIL": 6
 }

@@ -1,10 +1,10 @@
 {
     "JASNO": 0,
-    "NEZNANO": 1,
-    "OBLA\u010cNO": 2,
-    "DE\u017dEVNO": 3,
-    "MEGLA": 4,
-    "VETER": 5,
-    "SNEG": 6,
+    "OBLA\u010cNO": 1,
+    "DE\u017dEVNO": 2,
+    "MEGLA": 3,
+    "NEZNANO": 4,
+    "SNEG": 5,
+    "VETER": 6,
     "TO\u010cA": 7
 }

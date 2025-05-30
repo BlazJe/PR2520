@@ -1,10 +1,10 @@
 {
-    "ASFALT": 0,
-    "MAKADAM": 1,
-    "BETON": 2,
-    "OSTALO": 3,
-    "TLAKOVANO VOZI\u0160\u010cE": 4,
-    "HRAPAV  ASFALT / BETON": 5,
-    "ZGLAJEN ASFALT / BETON": 6,
-    "NERAVEN ASFALT / BETON": 7
+    "HRAPAV  ASFALT / BETON": 0,
+    "ZGLAJEN ASFALT / BETON": 1,
+    "OSTALO": 2,
+    "MAKADAM": 3,
+    "NERAVEN ASFALT / BETON": 4,
+    "ASFALT": 5,
+    "BETON": 6,
+    "TLAKOVANO VOZI\u0160\u010cE": 7
 }
