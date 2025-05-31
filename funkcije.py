@@ -1,13 +1,16 @@
 import pandas as pd
 import os
+import re
 
 def load_data():
     directory = './podatki'
     data = []
     max_zaporedna_stevilka = 0  
 
+    pattern = re.compile(r"^pn\d{4}\.csv$", re.IGNORECASE)
+
     for filename in os.listdir(directory):
-        if filename.endswith(".csv"):
+        if pattern.match(filename):
             filepath = os.path.join(directory, filename)
             try:
                 frame = pd.read_csv(
@@ -23,8 +26,11 @@ def load_data():
                 print(f"Napaka pri branju {filename}: {str(e)}")
                 continue
 
-    combined_data = pd.concat(data, ignore_index=True)
-    return combined_data
+    if data:
+        combined_data = pd.concat(data, ignore_index=True)
+        return combined_data
+    else:
+        return pd.DataFrame() 
 
 def stack_data(combined_data, atribute):
     unique_accidents = combined_data.groupby('ZaporednaStevilkaPN').first()
