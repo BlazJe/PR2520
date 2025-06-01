@@ -5,11 +5,11 @@ import calendar
 import import_ipynb
 import predictions  
 
-@st.cache_data
+@st.cache_data(ttl=300)
 def load_combined_data():
     return load_data()
 
-@st.cache_data
+@st.cache_data(ttl=300)  
 def get_stacked_data(df, group_col, n):
     return stack_data(df, group_col).head(n)
 
