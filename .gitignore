@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python
 *.pyc
 __pycache__/
@@ -13,3 +14,8 @@ PR2520/
 
 # IDE
 .vscode/
+=======
+*.pkl
+!models_naiveBayas/*.pkl
+!models_Random_Forest/
+>>>>>>> dev_zan

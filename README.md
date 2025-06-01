@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Linux
 ```
 python -m venv PR2520
@@ -29,3 +30,13 @@ nbdime config-git --enable
 ```
 nbdime mergetool
 ```
+=======
+# Modeli
+
+Modeli niso objavljeni v repozitoriju zaradi njihove velikosti.  
+Če želite generirati modele, poženite datoteko `model.ipynb`.  
+Modeli se bodo shranili v vnaprej določene direktorije:
+
+- `models_NaiveBayas`
+- `models_Random_Forest`
+>>>>>>> dev_zan
