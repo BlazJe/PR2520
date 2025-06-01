@@ -1,11 +1,79 @@
 # Končno poročilo o opravljenem delu
-## Analiza podatkov
 
+## 📖 Tema seminarske naloge
+- Analiza prometnih nesreč v Sloveniji, razvoj napovedovalnih modelov
 
+## 📊 [Podatki](https://podatki.gov.si/dataset/mnzpprometne-nesrece-od-leta-2009-dalje)
+
+### Podatki o nesrečah:
+- Identifikacijska številka nesreče
+- Klasifikacija nesreče glede na posledice
+- Upravna enota kraja nesreče
+- Datum in ura nesreče
+- Lokacija nesreče (naselje, vrsta ceste, odsek, hišna številka itd.)
+- Opis prizorišča nesreče
+- Glavni vzrok nesreče
+- Tip nesreče
+- Vremenske okoliščine in stanje prometa v času nesreče
+- Stanje vozišča in površine vozišča
+- Geo koordinate nesreče
+
+### Podatki o udeležencih:
+- Identifikacijska številka osebe v nesreči
+- Vloga osebe v nesreči (povzročitelj, oškodovanec)
+- Starost in spol osebe
+- Upravna enota stalnega prebivališča
+- Državljanstvo osebe
+- Vrsta udeleženca v prometu
+- Poškodba osebe
+- Uporaba varnostnega pasu ali čelade
+- Vozniški staž osebe (leta, meseci)
+- Rezultati alkotesta in strokovnega pregleda, če so bili opravljeni (mg/l izdihanega zraka, g/kg krvi)
+
+## Osnovna analiza
+
+### Cilji
+
+Cilji osnovne analize so bili ugotoviti, kako različni dejavniki vplivajo na nesreče, katera mesta so "najnevarnejša" ter grafično prikazati nesreče na zemljevidu. Vsa koda poteka analize je v `analiza.ipynb`
+
+### Klasifikacija nesreče
+
+`KlasifikacijaNesrece` ima lahko štiri vrednosti: `Z MATERIALNO ŠKODO`, `Z LAŽJO TELESNO POŠKODBO`, `S HUDO TELESNO POŠKODBO` in `S SMRTNIM IZIDOM`. Radi bi ugotovili, kako ostali atributi vplivajo na izid nesreče. Če jih razvrstimo le po enem atributu – recimo, ali je bil uporabljen varnostni pas ali ne – dobimo naslednji graf:  
+![Varnostni pas](slike/nesrecePoUporabiVarnostnegaPasu.png "Varnostni pas")
+
+Ta graf ni posebej informativen, saj je veliko več udeležencev uporabljalo pas, zato na prvi pogled izgleda, kot da uporaba pasu ne vpliva na izid nesreče. Če pa pogledamo razmerja, se lepo vidi, da je več smrtnih izidov v primerih, ko pas ni bil uporabljen.  
+![Varnostni pas - razmerje](slike/razmerjeVarnostniPas.png "Varnostni pas - razmerje")
+
+Prav tako smo izvedli analizo za ostale atribute – njihovi grafi so na voljo v [Streamlit](https://pr2520-promet.streamlit.app) aplikaciji.
+
+### Povzročitelj
+
+Pri analizi povzročiteljev prometnih nesreč smo ugotovili, da je večina povzročiteljev moškega spola (od vseh udeleženih je 35 % moških povzročiteljev, medtem ko je pri ženskah ta delež 25 %). Poleg tega je 77 % vseh udeležencev, katerih spol je neznan, označenih kot povzročitelji, kar verjetno pomeni, da so pobegnili s kraja nesreče.
+
+Največ nesreč povzročijo osebe v starosti med 20 in 30 let. Ta starostna skupina je očitno bolj nagnjena k tveganemu vedenju v prometu, kar lahko pripišemo pomanjkanju izkušenj. Zanimivo je tudi, da se med povzročitelji pojavlja precejšnje število mladoletnih oseb, ki so večinoma udeležene v nesrečah kot kolesarji.
+
+### "Najnevarnejša" mesta
+
+Najprej smo preverili, v katerih mestih se zgodi največ nesreč, in dobili naslednji graf:  
+![mesta](slike/nesrecePoMestih.png "mesta")
+
+Logično je, da se v večjih mestih zgodi največ nesreč, saj so tudi najbolj prometno obremenjena. Zato ta graf še ne odgovori na vprašanje, katero mesto je najnevarnejše.
+
+Na spletni strani Odprti podatki Slovenije smo pridobili podatke o [prometnih obremenitvah](https://podatki.gov.si/dataset/pldp-karte-prometnih-obremenitev). Podatki o prometnih nesrečah in obremenitvah se niso najbolje ujemali, zato jih je bilo težko neposredno povezati.
+
+Uporabili smo Python knjižnico `thefuzz`, ki primerja nize in oceni njihovo podobnost. Koda se nahaja v datoteki `/promet_po_upravnih_enotah.py`, ustvarjeni `.csv` pa v `podatki/vsota_vozil_po_upravnih_enotah.csv`. Ko izrišemo graf, dobimo:  
+![mesta](slike/upravne.png "mesta")
+
+Iz grafa smo odstranili osamelce, ki so nastali zaradi približnega ujemanja nizov. Kljub temu pa graf ni povsem zanesljiv zaradi narave približne primerjave.
+
+### Grafični prikaz
+
+Ker podatki vključujejo tudi geografske koordinate krajev, kjer so se nesreče zgodile, smo te podatke uporabili za vizualizacijo nesreč na zemljevidu. Prikazali smo jih v obliki raztresenega diagrama, ki omogoča vpogled v prostorsko porazdelitev nesreč, in toplotne karte, ki poudarja območja z večjo gostoto nesreč. Ti prikazi so uporabni za identifikacijo kritičnih točk.
+
+![Zemljevid](slike/zemljevidNesrec.png "Zemljevid prometnih nesreč")
+![Heatmap](slike/heatmap.png "Toplotna karta prometnih nesreč")
 
 ## Napovedovalni modeli
-
-
 
 ## Časovna analiza
 
