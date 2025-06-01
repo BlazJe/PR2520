@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from funkcije import load_data, stack_data, get_monthly_stacked, get_weekday_stacked, get_holiday_stacked
+from funkcije import load_data, stack_data, get_monthly_stacked, get_weekday_stacked, get_holiday_stacked, get_workfree_stacked, get_trend_stacked, plot_trend_rolling_plotly
 import calendar
 import import_ipynb
 import predictions  
@@ -149,7 +149,7 @@ st.plotly_chart(fig_ratio, use_container_width=True)
 
 st.write("## Časovna analiza nesreč")
 
-tab1, tab2, tab3 = st.tabs(["Po mesecih", "Po dnevih v tednu", "Prazniki"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Po mesecih", "Po dnevih v tednu", "Prazniki", "Dela prosti dnevi", "Trend"])
 
 with tab1:
     stacked_month = get_monthly_stacked(combined_data)
@@ -231,7 +231,50 @@ with tab3:
     )
     st.plotly_chart(fig_holiday, use_container_width=True)
 
-st.write("## Napovedovalni model")
+with tab4:
+    stacked_workfree = get_workfree_stacked(combined_data)
+    stacked_workfree_long = stacked_workfree.reset_index().melt(
+        id_vars='WorkFree',
+        var_name='Klasifikacija',
+        value_name='Povprečno na dan'
+    )
+    stacked_workfree_long['Dela prost dan'] = stacked_workfree_long['WorkFree'].map({True: 'Je', False: 'Ni'})
+    fig_workfree = px.bar(
+        stacked_workfree_long,
+        y='Dela prost dan',
+        x='Povprečno na dan',
+        color='Klasifikacija',
+        orientation='h',
+        barmode='stack',
+        color_discrete_map=classification_colors,
+        category_orders={'Dela prost dan': ['Je', 'Ni']}
+    )
+    fig_workfree.update_layout(
+        title='Nesreče povprečno na dela prost dan',
+        xaxis_title='Povprečno število nesreč na dan',
+        yaxis_title='Dela prost dan'
+    )
+    st.plotly_chart(fig_workfree, use_container_width=True)
+
+with tab5:
+    st.write("### Trendi")
+    stacked_trend = get_trend_stacked(combined_data)
+    fig_trend_365 = plot_trend_rolling_plotly(
+        stacked_trend, 
+        window=365, 
+        classification_colors=classification_colors, 
+        title='Nesreče povprečno na dan, povprečje zadnjih 365 dni'
+    )
+    fig_trend_100 = plot_trend_rolling_plotly(
+        stacked_trend, 
+        window=100, 
+        classification_colors=classification_colors, 
+        title='Nesreče povprečno na dan, povprečje zadnjih 100 dni'
+    )
+    st.plotly_chart(fig_trend_365, use_container_width=True)
+    st.plotly_chart(fig_trend_100, use_container_width=True)
+
+st.write("## Napovedovalni model: Naivni Bayes")
 
 allowedColumns = [
     'KlasifikacijaNesrece', 'UpravnaEnotaStoritve', 'UraPN', 'VNaselju',

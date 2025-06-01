@@ -7,3 +7,6 @@ pandas
 ipykernel 
 scipy
 scikit-learn
+plotly
+import_ipynb
+streamlit

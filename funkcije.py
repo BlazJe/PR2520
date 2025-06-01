@@ -3,8 +3,8 @@ import os
 import re
 import numpy as np
 import calendar
-import json
-import pickle
+import plotly.graph_objects as go
+
 
 def load_data():
     directory = './podatki'
@@ -177,4 +177,91 @@ def get_holiday_stacked(combined_data):
     stacked['Total'] = stacked.sum(axis=1)
     stacked = stacked.sort_values('Total', ascending=False).drop(columns=['Total'])
     return stacked
+
+def get_workfree_stacked(combined_data):
+    # Slovar dela prostih dni
+    work_free_holidays = {
+        'novo leto': True,
+        'Prešernov dan, slovenski kulturni praznik': True,
+        'velikonočna nedelja': True,
+        'velikonočni ponedeljek': True,
+        'dan upora proti okupatorju': True,
+        'praznik dela': True,
+        'binkoštna nedelja': True,
+        'dan Primoža Trubarja': False,
+        'dan državnosti': True,
+        'Marijino vnebovzetje': True,
+        'združitev prekmurskih Slovencev z matičnim narodom': False,
+        'priključitev Primorske k matični domovini': False,
+        'dan slovenskega športa': False,
+        'dan suverenosti': False,
+        'dan reformacije': True,
+        'dan spomina na mrtve': True,
+        'dan znanosti': False,
+        'dan Rudolfa Maistra': False,
+        'božič': True,
+        'dan samostojnosti in enotnosti': True,
+        'ni praznik': False
+    }
+
+    unique_accidents = combined_data.groupby('ZaporednaStevilkaPN').first()
+    unique_accidents['DatumPN'] = pd.to_datetime(unique_accidents['DatumPN'], format='%d.%m.%Y')
+    first_date = unique_accidents['DatumPN'].min()
+    last_date = unique_accidents['DatumPN'].max()
+    days = (last_date - first_date).days + 1
+    years = unique_accidents['DatumPN'].dt.year.nunique()
+
+    holidays = get_holiday_dict(first_date, last_date)
+    work_free_count = list(work_free_holidays.values()).count(True)
+
+    def get_work_free_occurence_count(name):
+        if name == True:
+            return years * work_free_count
+        else:
+            return days - years * work_free_count
+
+    unique_accidents['Holiday'] = unique_accidents['DatumPN'].map(holidays)
+    unique_accidents = unique_accidents.explode('Holiday')
+    unique_accidents['WorkFree'] = unique_accidents['Holiday'].map(work_free_holidays)
+    unique_accidents['WorkFree'] = unique_accidents['WorkFree'].fillna(False)
+
+    stacked = unique_accidents.groupby(['WorkFree', 'KlasifikacijaNesrece']).size().unstack(fill_value=0)
+    ordered_columns = ['Z MATERIALNO ŠKODO', 'Z LAŽJO TELESNO POŠKODBO', 'S HUDO TELESNO POŠKODBO', 'S SMRTNIM IZIDOM']
+    for col in ordered_columns:
+        stacked[col] = stacked.apply(
+            lambda row: row[col] / get_work_free_occurence_count(row.name),
+            axis=1
+        )
+    stacked = stacked[ordered_columns]
+    stacked = stacked.reindex([True, False], axis=0)
+    return stacked
+
+def get_trend_stacked(combined_data):
+    unique_accidents = combined_data.groupby('ZaporednaStevilkaPN').first()
+    unique_accidents['DatumPN'] = pd.to_datetime(unique_accidents['DatumPN'], format='%d.%m.%Y')
+    stacked_data = unique_accidents.groupby(['DatumPN', 'KlasifikacijaNesrece']).size().unstack(fill_value=0)
+    ordered_columns = ['Z MATERIALNO ŠKODO', 'Z LAŽJO TELESNO POŠKODBO', 'S HUDO TELESNO POŠKODBO', 'S SMRTNIM IZIDOM']
+    stacked_data = stacked_data[ordered_columns]
+    stacked_data = stacked_data.sort_index()
+    return stacked_data
+
+def plot_trend_rolling_plotly(stacked_data, window, classification_colors, title):
+    rolling = stacked_data.rolling(window=window, center=True, min_periods=1).mean()
+    fig = go.Figure()
+    for col in stacked_data.columns:
+        fig.add_trace(go.Scatter(
+            x=stacked_data.index,
+            y=rolling[col],
+            mode='lines',
+            name=col,
+            line=dict(color=classification_colors.get(col, 'gray'))
+        ))
+    fig.update_layout(
+        title=title,
+        xaxis_title='Datum',
+        yaxis_title='Povprečno število nesreč na dan',
+        legend_title='Klasifikacija nesreč',
+        yaxis=dict(range=[0, 70])
+    )
+    return fig
 
