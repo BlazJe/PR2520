@@ -1,9 +1,6 @@
-matplotlib
-pyproj
-geopandas
-contextily
-folium
+streamlit
 pandas
-ipykernel 
-scipy
+numpy
+plotly
 scikit-learn
+matplotlib
