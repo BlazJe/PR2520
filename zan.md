@@ -34,7 +34,7 @@ pa je lahko problem izbire modela ali pa pomeni, da podatki za tisti stolpec nim
 
 Stolpični diagram prikaza natančnosti modelov.
 
-![Graf](slike/accuracy_graph.png "Slika grafa natančnosti")
+![Graf](models_naiveBayas/accuracy_graph.png "Slika grafa natančnosti")
 
 # Modeli za napovedovanje vrednosti generirani z random forest.
 
@@ -48,7 +48,7 @@ in je prikaz na grafih precej nesmiselen (vrednost atributa <= 4.5 pri diskretni
 
 Stolpični diagram prikaza natančnosti modelov.
 
-![Graf](slike/accuracy_graph.png "Slika grafa natančnosti")
+![Graf](models_Random_Forest/accuracy_graph.png "Slika grafa natančnosti")
 
 # Napovedovanje
 
