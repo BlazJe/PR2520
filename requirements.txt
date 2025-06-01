@@ -7,3 +7,4 @@ pandas
 ipykernel 
 scipy
 scikit-learn
+thefuzz

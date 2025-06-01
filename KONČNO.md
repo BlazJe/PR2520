@@ -1,6 +1,8 @@
 # Končno poročilo o opravljenem delu
 ## Analiza podatkov
 
+
+
 ## Napovedovalni modeli
 
 
